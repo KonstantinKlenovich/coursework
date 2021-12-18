@@ -1,0 +1,33 @@
+<div class="container">
+  <form class="register-form" [formGroup]="registerForm" autocomplete="off" (ngSubmit)="onSubmit(registerForm)">
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Имя</mat-label>
+      <input matInput type="text" formControlName="name">
+      <mat-error *ngIf="this.registerForm.get('name')?.errors?.['required']">Имя не введено</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="this.registerForm.get('email')?.errors?.['required']">Email не введён</mat-error>
+      <mat-error *ngIf="this.registerForm.get('email')?.errors?.['email']">Email неправильный</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Пароль</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="this.registerForm.get('password')?.errors?.['required']">Пароль не введён</mat-error>
+      <mat-error *ngIf="this.registerForm.get('password')?.errors?.['minlength']">Пароль должен быть больше или равен 8 символам</mat-error>
+    </mat-form-field>
+
+    <div class="btn-wrapper">
+      <a class="link" routerLink="/auth">Авторизация</a>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
+        Зарегистрироваться
+      </button>
+    </div>
+
+  </form>
+</div>

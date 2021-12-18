@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  user-select: none;
+  --size: 10px;
+}
+
+.header {
+  background-color: var(--header-bg-color);
+  padding: 12px 0;
+  overflow: hidden;
+}
+
+.header__wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--size);
+}
+
+.header__img-wrapper {
+  display: block;
+}
+
+.header__wrapper-end {
+  margin-left: auto;
+}
+
+.header__nav {
+  display: flex;
+  gap: var(--size);
+}
+
+.btn_register {
+  margin-left: auto;
+}
+
+.header__wrapper-end {
+  display: flex;
+  gap: var(--size);
+}
+
+.btn_logout {
+  display: inline-block;
+}
+
+.user-name {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 1.3em;
+}

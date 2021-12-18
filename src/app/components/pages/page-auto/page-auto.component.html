@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="wrapper">
+
+    <div class="h1">Автомобили <span>на сегодня</span></div>
+
+    <ul>
+      <li>
+        <p>Цены указаны в российских рублях и могут изменяться в зависимости от курcов USD-RUB, EUR-RUB</p>
+      </li>
+      <li>
+        <p>Если здесь нет автомобиля, который Вас интересует, то Вы можете обратиться к нам по телефону для консультации</p>
+      </li>
+      
+      <li>
+        <p>Вы можете ознакомиться с различными комплектациями автомобиля на официальном сайте бренда,  а затем связаться с нами для уточнения возможности ее приобретения</p>
+      </li>
+      <li>
+        <p>При бронировании машины вы можете сохранить цену того дня, в который произвели бронирование</p>
+      </li>
+      <li>
+        <p>Бронирование возможно только при предоплате в размере 10% от сегодняшней стоимости автомобиля</p>
+      </li>
+    </ul>
+    <form [formGroup]="formSearch">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Название машины</mat-label>
+        <input formControlName="name" type="text" matInput>
+      </mat-form-field>
+    </form>
+
+    <ng-container *ngIf="(allAutoObservable | async) as allAuto">
+      <ng-container *ngIf="allAuto.length !== 0">
+
+        <div class="auto-container">
+          <ng-container *ngFor="let auto of allAuto">
+            <div class="auto">
+              
+              <div class="auto__img-container">
+                <img class="auto__img" [src]="auto.imgUrl" alt="">
+              </div>
+              <div class="auto__title">
+                {{ auto.name }}
+              </div>
+              <div class="auto__price">
+                {{ auto.price }} ₽
+              </div>
+              <div class="auto__quantity">
+                Количество: {{ auto.quantity }}
+              </div>
+      
+            </div> <!-- .auto -->
+          </ng-container>
+        </div> <!-- .auto-container -->
+  
+      </ng-container>
+    </ng-container>
+
+  </div> <!-- .wrapper-->
+</div> <!-- .container -->

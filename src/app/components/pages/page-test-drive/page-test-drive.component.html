@@ -1,0 +1,91 @@
+<div class="container">
+  <h1 class="text-center h1">Запись на тест-драйв</h1>
+  <h3 class="h3">Оставьте заявку на пробную поездку по Москве и познайте суть прогресса!</h3>
+
+  <div class="wrapper">
+    <form
+      class="form"
+      [formGroup]="formTestDrive"
+      (ngSubmit)="onSubmit(formTestDrive)"
+    >
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Выберите дату</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date" />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="this.formTestDrive.get('date')?.hasError('required')"
+          >Дата не выбрана</mat-error
+        >
+        <mat-error *ngIf="this.formTestDrive.get('date')?.hasError('date')"
+          >Вы выбрали дату из прошлого. &nbsp; &nbsp;Назад в будущее?:)</mat-error
+        >
+      </mat-form-field>
+
+      <ng-container *ngIf="allAutoObservable | async as allAuto">
+        <ng-container *ngIf="allAuto.length !== 0">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Выберите машину</mat-label>
+            <select matNativeControl formControlName="car">
+              <ng-container *ngFor="let car of allAuto">
+                <option [ngValue]="car">{{ car.name }}</option>
+              </ng-container>
+            </select>
+            <mat-error
+              *ngIf="this.formTestDrive.get('car')?.hasError('required')"
+              >Машина не выбрана</mat-error
+            >
+          </mat-form-field>
+        </ng-container>
+      </ng-container>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="!formTestDrive.valid"
+      >
+        Отправить заявку
+      </button>
+    </form>
+
+    <div class="auto">
+      <ng-container *ngIf="carSelectObservable | async as auto">
+        <div class="auto-quantity">Количество: {{ auto.quantity }}</div>
+        <div class="auto__img-container">
+          <img class="auto__img" [src]="auto.imgUrl" alt="" />
+        </div>
+      </ng-container>
+    </div>
+  </div> <!-- .wrapper -->
+
+  <ng-container *ngIf="(allRecordsTestDriveObservable | async) as allRecordsTestDrive">
+
+    <table mat-table [dataSource]="allRecordsTestDrive" class="table full-width">
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Код заявки</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.user.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Дата</th>
+        <td mat-cell *matCellDef="let element">{{ element.date | date }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="auto">
+        <th mat-header-cell *matHeaderCellDef>Автомобиль</th>
+        <td mat-cell *matCellDef="let element">{{ element.auto.brand }}</td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+  </ng-container>
+  
+</div> <!-- .container -->

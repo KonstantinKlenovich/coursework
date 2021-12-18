@@ -1,0 +1,24 @@
+:host {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+  margin: 0 auto;
+  gap: 15px;
+}
+
+.btn-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}

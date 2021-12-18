@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.footer {
+  background-color: var(--header-bg-color);
+  color: var(--footer-color);
+  padding: 16px 0;
+}
+
+.kk-svg {
+  width: 50px;
+}
+
+.kk-svg svg {
+  width: 100%;
+}
+
+.kk-svg polygon {
+  fill: black;
+  stroke: black;
+}
+
+.author {
+  font-family: 'Indie Flower', cursive;
+  font-size: 1.5em;
+}

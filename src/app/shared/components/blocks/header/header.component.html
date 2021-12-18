@@ -1,0 +1,38 @@
+<header class="header">
+  <div class="container container_fluid">
+    <div class="header__wrapper">
+      <a class="header__img-wrapper" routerLink="/">
+        <div class="header__img">
+          <svg width="32px" height="32px" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <style>.cls-1{fill:none;}</style>
+            </defs>
+            <title>letter--Kk</title>
+            <polygon points="15 9 12.89 9 9 15.55 9 9 7 9 7 23 9 23 9 18.71 9.93 17.22 12.89 23 15 23 11.11 15.43 15 9" fill="white" stroke="white"/>
+            <polygon points="22.78 23 25 23 21.22 17 25 13 22.76 13 19 17.17 19 9 17 9 17 23 19 23 19 19.25 19.96 18.21 22.78 23" fill="white" stroke="white"/>
+            <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+          </svg>
+        </div>
+      </a>
+      <nav class="header__nav">
+        <a routerLink="/auto" routerLinkActive="btn_active"class="btn header__link">Автомобили</a>
+        <a routerLink="/contacts" routerLinkActive="btn_active" class="btn header__link">Контакты</a>
+        <a routerLink="/test-drive" routerLinkActive="btn_active" class="btn header__link">Тест-драйв</a>
+      </nav>
+
+      <ng-container *ngIf="(userSubject | async) as user; else defaultTemplate">
+          <div class="header__wrapper-end">
+            <a (click)="logout()" class="btn btn_logout">Выйти из <span class="user-name">{{ user.name }}</span></a>
+          </div>
+      </ng-container>
+
+      <ng-template #defaultTemplate>
+        <div class="header__wrapper-end">
+          <a class="btn btn_register" routerLinkActive="btn_active" routerLink="/register">Регистрация</a>
+          <a class="btn btn_auth" routerLinkActive="btn_active" routerLink="/auth">Авторизация</a>
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</header>
